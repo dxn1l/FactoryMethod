@@ -1,4 +1,13 @@
 package org.example.factory;
 
-public class WebDialog {
+class WebDialog extends Dialog {
+    @Override
+    Button createButton() {
+        return new WindowsButton();
+    }
+
+    @Override
+    CheckBox createCheckBox() {
+        return new WindowsCheckBox();
+    }
 }

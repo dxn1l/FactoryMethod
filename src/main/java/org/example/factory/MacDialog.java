@@ -1,13 +1,13 @@
 package org.example.factory;
 
-class WindowsDialog extends Dialog {
+class MacDialog extends Dialog {
     @Override
     Button createButton() {
-        return new WindowsButton();
+        return new MacButton();
     }
 
     @Override
     CheckBox createCheckBox() {
-        return new WindowsCheckBox();
+        return new MacCheckBox();
     }
 }

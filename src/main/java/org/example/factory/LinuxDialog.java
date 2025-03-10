@@ -1,13 +1,13 @@
 package org.example.factory;
 
-class WindowsDialog extends Dialog {
+class LinuxDialog extends Dialog {
     @Override
     Button createButton() {
-        return new WindowsButton();
+        return new LinuxButton();
     }
 
     @Override
     CheckBox createCheckBox() {
-        return new WindowsCheckBox();
+        return new LinuxCheckBox();
     }
 }

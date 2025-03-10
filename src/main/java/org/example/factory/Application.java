@@ -3,19 +3,28 @@ package org.example.factory;
 public class Application {
     private static Dialog dialog;
 
+
     public static void initialize(String os) {
-        if ("Windows".equalsIgnoreCase(os)) {
-            dialog = new WindowsDialog();
-        } else if ("Web".equalsIgnoreCase(os)) {
-            dialog = new WebDialog();
-        } else {
-            throw new RuntimeException("Error! Sistema operativo desconocido.");
+        switch (os.toLowerCase()) {
+            case "windows":
+                dialog = new WindowsDialog();
+                break;
+            case "web":
+                dialog = new WebDialog();
+                break;
+            case "mac":
+                dialog = new MacDialog();
+                break;
+            case "linux":
+                dialog = new LinuxDialog();
+                break;
+            default:
+                throw new RuntimeException("Error! Sistema operativo desconocido.");
         }
     }
 
     public static void main(String[] args) {
-        // Simulamos una configuración del sistema
-        String configOS = "Windows"; // Cambia a "Web" para probar otro tipo de botón
+        String configOS = "Windows";
         initialize(configOS);
         dialog.render();
     }
