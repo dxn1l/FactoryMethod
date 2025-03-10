@@ -1,0 +1,117 @@
+# Factory Method Pattern - Java + Maven
+
+Este proyecto implementa el patrón Factory Method en Java utilizando Maven como gestor de dependencias.
+Incluye pruebas unitarias con JUnit 5 y está preparado para ejecutarse en IntelliJ IDEA.
+
+## 📌 Estructura del Proyecto
+
+
+```sh
+
+mi-proyecto/
+│── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   ├── factory/
+│   │   │   │   ├── Application.java
+│   │   │   │   ├── Dialog.java
+│   │   │   │   ├── WebDialog.java
+│   │   │   │   ├── WindowsDialog.java
+│   │   │   │   ├── Button.java
+│   │   │   │   ├── WindowsButton.java
+│   │   │   │   ├── HTMLButton.java
+│   ├── test/
+│   │   ├── java/
+│   │   │   ├── FactoryMethodTest.java
+│── pom.xml
+│── README.md
+
+
+```
+
+## 🚀 Instalación y Ejecución
+
+1️⃣**Clonar el repositorio**:
+
+```bash
+
+git clone https://github.com/tu-repositorio/factory-method-java.git
+cd factory-method-java
+
+```
+
+2️⃣**Importar en IntelliJ IDEA**:
+
+* Abrir IntelliJ IDEA.
+
+* Seleccionar "Open Project" y elegir la carpeta del proyecto.
+
+* IntelliJ detectará Maven automáticamente y descargará las dependencias.
+
+* Esperar a que se resuelvan las dependencias.
+
+3️⃣**Ejecutar la aplicación**:
+
+```bash
+
+mvn compile exec:java -Dexec.mainClass="factory.Application"
+
+```
+
+O desde IntelliJ:
+
+* Abrir Application.java y ejecutar el método main().
+
+## 🧪 Ejecutar Pruebas Unitarias
+
+Para ejecutar las pruebas con JUnit 5:
+
+```bash
+
+mvn test
+
+```
+
+O desde IntelliJ:
+
+* Ir al archivo FactoryMethodTest.java y hacer clic derecho -> Run Tests.
+
+## 📜 Descripción del Patrón Factory Method
+
+El Factory Method es un patrón de diseño creacional que permite a las subclases decidir qué tipo de objeto crear.
+
+## 📌 Implementación
+
+* Dialog → Clase abstracta con el método fábrica createButton().
+
+* WindowsDialog y WebDialog → Implementan createButton() y crean instancias de WindowsButton o HTMLButton.
+
+* Button → Interfaz con los métodos render() y onClick().
+
+* WindowsButton y HTMLButton → Implementaciones concretas de Button.
+
+* Application → Clase principal que selecciona el tipo de Dialog según la configuración del sistema.
+
+## 🛠️ Dependencias Maven
+
+## 📌 Archivo pom.xml
+
+```xml
+
+<dependencies>
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-api</artifactId>
+        <version>5.9.2</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId>
+        <version>5.9.2</version>
+        <scope>test</scope>
+    </dependency>
+</dependencies>
+
+```
+
