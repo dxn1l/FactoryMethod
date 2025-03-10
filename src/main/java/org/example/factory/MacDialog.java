@@ -7,12 +7,12 @@ import org.example.CheckBox.MacCheckBox;
 
 public class MacDialog extends Dialog {
     @Override
-    Button createButton() {
+    public Button createButton() {
         return new MacButton();
     }
 
     @Override
-    CheckBox createCheckBox() {
+    public CheckBox createCheckBox() {
         return new MacCheckBox();
     }
 }

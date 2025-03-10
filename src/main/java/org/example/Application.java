@@ -1,9 +1,17 @@
 package org.example;
 
+import org.example.Button.Button;
 import org.example.factory.*;
+import org.example.Button.*;
+import org.example.CheckBox.*;
+import org.example.factory.Dialog;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class Application {
     private static Dialog dialog;
+    private static JTextArea terminal;
 
 
     public static void initialize(String os) {
@@ -26,8 +34,95 @@ public class Application {
     }
 
     public static void main(String[] args) {
-        String configOS = "web";
-        initialize(configOS);
-        dialog.render();
+        // Crear la ventana principal
+        JFrame frame = new JFrame("Factory Method - Selector de Botón");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(500, 400);
+        frame.setLayout(new BorderLayout());
+
+        // Dropdown para seleccionar el sistema
+        String[] options = {"Windows", "Mac", "Linux", "Web"};
+        JComboBox<String> osSelector = new JComboBox<>(options);
+
+        // Botón para confirmar selección
+        JButton createButton = new JButton("Crear Botón");
+
+        // Panel superior con selección de sistema
+        JPanel topPanel = new JPanel();
+        topPanel.add(new JLabel("Selecciona el sistema:"));
+        topPanel.add(osSelector);
+        topPanel.add(createButton);
+
+        // Área de texto para simular la terminal
+        terminal = new JTextArea();
+        terminal.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(terminal);
+
+        // Agregar componentes al frame
+        frame.add(topPanel, BorderLayout.NORTH);
+        frame.add(scrollPane, BorderLayout.CENTER);
+
+        // Acción del botón para crear el botón seleccionado
+        createButton.addActionListener(e -> {
+            String selectedOS = (String) osSelector.getSelectedItem();
+            initialize(selectedOS);
+            renderButton(frame);
+        });
+
+        // Mostrar la ventana
+        frame.setVisible(true);
+    }
+
+    private static void renderButton(JFrame frame) {
+        // Eliminar el panel inferior antes de agregar el nuevo
+        Container contentPane = frame.getContentPane();
+
+        // Remover solo el panel inferior sin afectar la selección y la terminal
+        Component[] components = contentPane.getComponents();
+        for (Component comp : components) {
+            if (comp instanceof JPanel && comp != contentPane.getComponent(0)) { // No eliminar el panel superior
+                contentPane.remove(comp);
+            }
+        }
+
+        // Crear el botón usando Factory Method
+        Button button = dialog.createButton();
+        CheckBox checkBox = dialog.createCheckBox();
+
+        // Crear panel inferior
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.setLayout(new FlowLayout());
+
+        // Botón generado dinámicamente
+        JButton dynamicButton = new JButton("Botón " + button.getClass().getSimpleName());
+        dynamicButton.addActionListener(e -> {
+            terminal.append("-> " + button.getClass().getSimpleName() + " \n fue presionado\n");
+            terminal.append("   " + simulateButtonAction(button) + "\n\n");
+        });
+
+        // Checkbox generado dinámicamente
+        JCheckBox dynamicCheckBox = new JCheckBox("CheckBox");
+        dynamicCheckBox.addActionListener(e -> {
+            terminal.append("-> " + checkBox.getClass().getSimpleName() + " cambiado de estado\n");
+        });
+
+        // Agregar elementos al panel
+        bottomPanel.add(dynamicButton);
+        bottomPanel.add(dynamicCheckBox);
+
+        // Agregar el nuevo panel al frame
+        frame.add(bottomPanel, BorderLayout.SOUTH);
+
+        // Refrescar la interfaz
+        frame.revalidate();
+        frame.repaint();
+    }
+
+
+    private static String simulateButtonAction(Button button) {
+        return "Acción: " + (button instanceof WindowsButton ? "Abrir menú" :
+                button instanceof MacButton ? "Abrir Spotlight" :
+                        button instanceof LinuxButton ? "Abrir terminal" :
+                                button instanceof HTMLButton ? "Navegar a una página" : "Acción desconocida");
     }
 }

@@ -9,12 +9,12 @@ public class WebDialog extends Dialog {
 
 
     @Override
-    Button createButton() {
+    public Button createButton() {
         return new HTMLButton();
     }
 
     @Override
-    CheckBox createCheckBox() {
+    public CheckBox createCheckBox() {
         return new WebCheckBox();
     }
 }

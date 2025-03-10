@@ -7,12 +7,12 @@ import org.example.CheckBox.WindowsCheckBox;
 
 public class WindowsDialog extends Dialog {
     @Override
-    Button createButton() {
+    public Button createButton() {
         return new WindowsButton();
     }
 
     @Override
-    CheckBox createCheckBox() {
+    public CheckBox createCheckBox() {
         return new WindowsCheckBox();
     }
 }

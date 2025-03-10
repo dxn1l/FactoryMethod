@@ -7,12 +7,12 @@ import org.example.CheckBox.LinuxCheckBox;
 
 public class LinuxDialog extends Dialog {
     @Override
-    Button createButton() {
+   public Button createButton() {
         return new LinuxButton();
     }
 
     @Override
-    CheckBox createCheckBox() {
+    public CheckBox createCheckBox() {
         return new LinuxCheckBox();
     }
 }

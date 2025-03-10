@@ -5,7 +5,7 @@ import org.example.Button.HTMLButton;
 import org.example.CheckBox.CheckBox;
 import org.example.CheckBox.WebCheckBox;
 
-class WebDialog extends Dialog {
+public class WebDialog extends Dialog {
 
 
     @Override
