@@ -1,0 +1,33 @@
+package org.example;
+
+import org.example.factory.*;
+
+public class Application {
+    private static Dialog dialog;
+
+
+    public static void initialize(String os) {
+        switch (os.toLowerCase()) {
+            case "windows":
+                dialog = new WindowsDialog();
+                break;
+            case "web":
+                dialog = new WebDialog();
+                break;
+            case "mac":
+                dialog = new MacDialog();
+                break;
+            case "linux":
+                dialog = new LinuxDialog();
+                break;
+            default:
+                throw new RuntimeException("Error! Sistema operativo desconocido.");
+        }
+    }
+
+    public static void main(String[] args) {
+        String configOS = "web";
+        initialize(configOS);
+        dialog.render();
+    }
+}

@@ -1,4 +1,4 @@
-package org.example.factory;
+package org.example.Button;
 
 public class WindowsButton implements Button {
     @Override

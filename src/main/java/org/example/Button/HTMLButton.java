@@ -1,6 +1,6 @@
-package org.example.factory;
+package org.example.Button;
 
-class HTMLButton implements Button {
+public class HTMLButton implements Button {
     @Override
     public void render() {
         System.out.println("Renderizando un botón HTML");

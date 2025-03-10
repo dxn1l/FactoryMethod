@@ -1,6 +1,6 @@
-package org.example.factory;
+package org.example.CheckBox;
 
-class MacCheckBox implements CheckBox {
+public class MacCheckBox implements CheckBox {
     @Override
     public void render() {
         System.out.println("Renderizando un checkbox estilo MacOS");

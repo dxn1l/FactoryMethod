@@ -1,6 +1,6 @@
-package org.example.factory;
+package org.example.CheckBox;
 
-class LinuxCheckBox implements CheckBox {
+public class LinuxCheckBox implements CheckBox {
     @Override
     public void render() {
         System.out.println("Renderizando un checkbox estilo Linux");

@@ -1,6 +1,6 @@
-package org.example.factory;
+package org.example.CheckBox;
 
-class WindowsCheckBox implements CheckBox {
+public class WindowsCheckBox implements CheckBox {
     @Override
     public void render() {
         System.out.println("Renderizando un checkbox estilo Windows");

@@ -1,6 +1,9 @@
 package org.example.factory;
 
-abstract class Dialog {
+import org.example.Button.Button;
+import org.example.CheckBox.CheckBox;
+
+public abstract class Dialog {
     abstract Button createButton(); // Método fábrica
     abstract CheckBox createCheckBox();
 

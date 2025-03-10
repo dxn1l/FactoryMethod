@@ -1,6 +1,11 @@
 package org.example.factory;
 
-class MacDialog extends Dialog {
+import org.example.Button.Button;
+import org.example.Button.MacButton;
+import org.example.CheckBox.CheckBox;
+import org.example.CheckBox.MacCheckBox;
+
+public class MacDialog extends Dialog {
     @Override
     Button createButton() {
         return new MacButton();

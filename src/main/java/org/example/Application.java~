@@ -1,4 +1,6 @@
-package org.example.factory;
+package org.example;
+
+import org.example.factory.*;
 
 public class Application {
     private static Dialog dialog;

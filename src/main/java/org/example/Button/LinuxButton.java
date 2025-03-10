@@ -1,6 +1,6 @@
-package org.example.factory;
+package org.example.Button;
 
-class LinuxButton implements Button {
+public class LinuxButton implements Button {
     @Override
     public void render() {
         System.out.println("Renderizando un botón estilo Linux");

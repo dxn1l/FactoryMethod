@@ -1,6 +1,6 @@
-package org.example.factory;
+package org.example.CheckBox;
 
-class WebCheckBox implements CheckBox {
+public class WebCheckBox implements CheckBox {
     @Override
     public void render() {
         System.out.println("Renderizando un checkbox estilo Web");

@@ -1,6 +1,6 @@
-package org.example.factory;
+package org.example.Button;
 
-class MacButton implements Button {
+public class MacButton implements Button {
     @Override
     public void render() {
         System.out.println("Renderizando un botón estilo MacOS");

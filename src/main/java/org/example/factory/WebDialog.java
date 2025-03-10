@@ -1,6 +1,11 @@
 package org.example.factory;
 
-class WebDialog extends Dialog {
+import org.example.Button.Button;
+import org.example.Button.HTMLButton;
+import org.example.CheckBox.CheckBox;
+import org.example.CheckBox.WebCheckBox;
+
+public class WebDialog extends Dialog {
 
 
     @Override
