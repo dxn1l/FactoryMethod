@@ -8,21 +8,37 @@ Incluye pruebas unitarias con JUnit 5 y está preparado para ejecutarse en Intel
 
 ```sh
 
-mi-proyecto/
+FactoryMethod/
 │── src/
 │   ├── main/
 │   │   ├── java/
-│   │   │   ├── factory/
+│   │   │   ├── org.example/
 │   │   │   │   ├── Application.java
-│   │   │   │   ├── Dialog.java
-│   │   │   │   ├── WebDialog.java
-│   │   │   │   ├── WindowsDialog.java
-│   │   │   │   ├── Button.java
-│   │   │   │   ├── WindowsButton.java
-│   │   │   │   ├── HTMLButton.java
+│   │   │   │   ├── Button/
+│   │   │   │   │   ├── Button.java
+│   │   │   │   │   ├── HTMLButton.java
+│   │   │   │   │   ├── LinuxButton.java
+│   │   │   │   │   ├── MacButton.java
+│   │   │   │   │   ├── WindowsButton.java
+│   │   │   │   ├── CheckBox/
+│   │   │   │   │   ├── CheckBox.java
+│   │   │   │   │   ├── LinuxCheckBox.java
+│   │   │   │   │   ├── MacCheckBox.java
+│   │   │   │   │   ├── WebCheckBox.java
+│   │   │   │   │   ├── WindowsCheckBox.java
+│   │   │   │   ├── factory/
+│   │   │   │   │   ├── Dialog.java
+│   │   │   │   │   ├── LinuxDialog.java
+│   │   │   │   │   ├── MacDialog.java
+│   │   │   │   │   ├── WebDialog.java
+│   │   │   │   │   ├── WindowsDialog.java
 │   ├── test/
 │   │   ├── java/
-│   │   │   ├── FactoryMethodTest.java
+│   │   │   ├── org.example.factory/
+│   │   │   │   ├── FactoryMethodTest.java
+│── resources/
+│── target/
+│── .gitignore
 │── pom.xml
 │── README.md
 
@@ -54,7 +70,7 @@ cd factory-method-java
 
 ```bash
 
-mvn compile exec:java -Dexec.mainClass="factory.Application"
+mvn compile exec:java -Dexec.mainClass="factory.Application" -Dexec.args="Windows/Linux/Mac/Web"
 
 ```
 
@@ -82,15 +98,13 @@ El Factory Method es un patrón de diseño creacional que permite a las subclase
 
 ## 📌 Implementación
 
-* Dialog → Clase abstracta con el método fábrica createButton().
-
-* WindowsDialog y WebDialog → Implementan createButton() y crean instancias de WindowsButton o HTMLButton.
-
-* Button → Interfaz con los métodos render() y onClick().
-
-* WindowsButton y HTMLButton → Implementaciones concretas de Button.
-
-* Application → Clase principal que selecciona el tipo de Dialog según la configuración del sistema.
+- `Dialog` → Clase abstracta con los métodos fábrica `createButton()` y `createCheckBox()`.
+- `WindowsDialog`, `WebDialog`, `MacDialog`, `LinuxDialog` → Implementan `createButton()` y `createCheckBox()`, creando instancias de `Button` y `CheckBox` según el sistema.
+- `Button` → Interfaz con los métodos `render()` y `onClick()`.
+- `WindowsButton`, `MacButton`, `LinuxButton`, `HTMLButton` → Implementaciones concretas de `Button`.
+- `CheckBox` → Interfaz con los métodos `render()` y `onToggle()`.
+- `WindowsCheckBox`, `MacCheckBox`, `LinuxCheckBox`, `WebCheckBox` → Implementaciones concretas de `CheckBox`.
+- `Application` → Clase principal que selecciona el tipo de `Dialog` según la configuración del sistema.
 
 ## 🛠️ Dependencias Maven
 
