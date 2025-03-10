@@ -71,6 +71,11 @@ class FactoryMethodTest {
 
 
     @Test
+    void testApplicationInitializationError() {
+        assertThrows(RuntimeException.class, () -> Application.initialize("Linux"), "Debe lanzar excepción para SO desconocido");
+    }
+
+    @Test
     void testWindowsCheckBoxCreation() {
         Dialog dialog = new WindowsDialog();
         CheckBox checkBox = dialog.createCheckBox();
