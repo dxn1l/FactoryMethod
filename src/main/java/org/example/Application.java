@@ -34,6 +34,9 @@ public class Application {
     }
 
     public static void main(String[] args) {
+        // Aplicar tema oscuro
+        setDarkMode();
+
         // Crear la ventana principal
         JFrame frame = new JFrame("Factory Method - Selector de Botón");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,19 +46,27 @@ public class Application {
         // Dropdown para seleccionar el sistema
         String[] options = {"Windows", "Mac", "Linux", "Web"};
         JComboBox<String> osSelector = new JComboBox<>(options);
+        osSelector.setBackground(Color.DARK_GRAY);
+        osSelector.setForeground(Color.GREEN);
 
-        // Botón para confirmar selección
         JButton createButton = new JButton("Crear Botón");
+        createButton.setBackground(Color.BLACK);
+        createButton.setForeground(Color.GREEN);
 
         // Panel superior con selección de sistema
         JPanel topPanel = new JPanel();
-        topPanel.add(new JLabel("Selecciona el sistema:"));
+        topPanel.setBackground(Color.BLACK);
+        JLabel label = new JLabel("Selecciona el sistema:");
+        label.setForeground(Color.GREEN);
+        topPanel.add(label);
         topPanel.add(osSelector);
         topPanel.add(createButton);
 
         // Área de texto para simular la terminal
         terminal = new JTextArea();
         terminal.setEditable(false);
+        terminal.setBackground(Color.BLACK);
+        terminal.setForeground(Color.GREEN);
         JScrollPane scrollPane = new JScrollPane(terminal);
 
         // Agregar componentes al frame
@@ -71,6 +82,24 @@ public class Application {
 
         // Mostrar la ventana
         frame.setVisible(true);
+    }
+
+    private static void setDarkMode() {
+        try {
+            UIManager.put("Panel.background", Color.BLACK);
+            UIManager.put("Label.foreground", Color.GREEN);
+            UIManager.put("Button.background", Color.DARK_GRAY);
+            UIManager.put("Button.foreground", Color.GREEN);
+            UIManager.put("ComboBox.background", Color.BLACK);
+            UIManager.put("ComboBox.foreground", Color.GREEN);
+            UIManager.put("ScrollPane.background", Color.BLACK);
+            UIManager.put("TextArea.background", Color.BLACK);
+            UIManager.put("TextArea.foreground", Color.GREEN);
+            UIManager.put("CheckBox.background", Color.BLACK);
+            UIManager.put("CheckBox.foreground", Color.GREEN);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private static void renderButton(JFrame frame) {
@@ -91,19 +120,24 @@ public class Application {
 
         // Crear panel inferior
         JPanel bottomPanel = new JPanel();
+        bottomPanel.setBackground(Color.BLACK);
         bottomPanel.setLayout(new FlowLayout());
 
         // Botón generado dinámicamente
         JButton dynamicButton = new JButton("Botón " + button.getClass().getSimpleName());
+        dynamicButton.setBackground(Color.DARK_GRAY);
+        dynamicButton.setForeground(Color.GREEN);
         dynamicButton.addActionListener(e -> {
-            terminal.append("-> " + button.getClass().getSimpleName() + " \n fue presionado\n");
+            terminal.append("\n-> " + button.getClass().getSimpleName() + " \n fue presionado\n");
             terminal.append("   " + simulateButtonAction(button) + "\n\n");
         });
 
         // Checkbox generado dinámicamente
         JCheckBox dynamicCheckBox = new JCheckBox("CheckBox");
+        dynamicCheckBox.setBackground(Color.BLACK);
+        dynamicCheckBox.setForeground(Color.GREEN);
         dynamicCheckBox.addActionListener(e -> {
-            terminal.append("-> " + checkBox.getClass().getSimpleName() + " cambiado de estado\n");
+            terminal.append("\n-> " + checkBox.getClass().getSimpleName() + " cambiado de estado\n\n");
         });
 
         // Agregar elementos al panel
@@ -118,7 +152,6 @@ public class Application {
         frame.repaint();
     }
 
-
     private static String simulateButtonAction(Button button) {
         return "Acción: " + (button instanceof WindowsButton ? "Abrir menú" :
                 button instanceof MacButton ? "Abrir Spotlight" :
@@ -126,3 +159,6 @@ public class Application {
                                 button instanceof HTMLButton ? "Navegar a una página" : "Acción desconocida");
     }
 }
+
+
+
